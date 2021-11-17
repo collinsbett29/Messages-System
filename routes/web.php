@@ -25,3 +25,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\MessagesController::class, 'index'])->name('home');
 Route::get('/create', [App\Http\Controllers\MessagesController::class, 'create'])->name('create');
+Route::post('send', [App\Http\Controllers\MessagesController::class, 'send'])->name('send');

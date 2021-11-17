@@ -23,4 +23,19 @@ class MessagesController extends Controller
         // dd($messages);
         return view('create')->with('users', $users);
     }
+    public function send(Request $request) {
+        $this->validate($request, [
+            'subject' => 'required',
+            'message' => 'required'
+        ]);
+
+        $message = new Message();
+        $message->user_id_from = Auth::id();
+        $message->user_id_to = $request->input('to');
+        $message->subject = $request->input('subject');
+        $message->body = $request->input('message');
+        $message->save();
+
+        return redirect()->to('/home')->with('status', 'Message sent successfully!');
+    }
 }
