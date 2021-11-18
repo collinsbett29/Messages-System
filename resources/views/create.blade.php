@@ -13,7 +13,7 @@
     </div>
     <div class="form-group">
         <label for="subject">subject</label>
-        <input type="text" class="form-control" id="subject" name="subject" placeholder="Enter subject">
+        <input type="text" class="form-control" id="subject" name="subject" placeholder="Enter subject" value="{{ $subject ?? ''}}">
     </div>
     <div class="form-group">
         <label for="message">message</label>

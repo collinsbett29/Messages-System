@@ -35,7 +35,7 @@ class MessagesController extends Controller
         $message->user_id_to = $request->input('to');
         $message->subject = $request->input('subject');
         $message->body = $request->input('message');
-        // $message->save();
+        $message->save();
 
         return redirect()->to('/home')->with('status', 'Message sent successfully!');
     }
@@ -44,5 +44,10 @@ class MessagesController extends Controller
         $messages = Message::with('userTo')->where('user_id_from', Auth::id())->get();
 
         return view('sent')->with('messages', $messages);
+    }
+    public function read(int $id) {
+        $message = Message::with('userFrom')->find($id);
+
+        return view('read')->with('message', $message);
     }
 }

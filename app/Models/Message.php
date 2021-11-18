@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
-    public function userFrom(){
+    public function userFrom() {
         return $this->belongsTo('App\Models\User', 'user_id_from');
     }
-    public function userTo(){
+
+    public function userTo() {
         return $this->belongsTo('App\Models\User', 'user_id_to');
     }
+
 }
