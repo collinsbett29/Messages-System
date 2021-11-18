@@ -19,10 +19,18 @@ class MessagesController extends Controller
         return view('home')->with('messages', $messages);
     }
 
-    public function create(){
+    public function create(int $id = 0,String $subject = ''){
+        if ('$id === 0'){
+            $users = User::where('id', '!=' , Auth::id())->get(); 
+        }
+        else{
+            $users = User::where('id', $id)->get();
+        }
         $users = User::where('id', '!=' , Auth::id())->get(); 
 
-        return view('create')->with('users', $users);
+        if ( $subject !== '') $subject = 'Re: ' . $subject;
+
+        return view('create')->with(['users' => $users, 'subject' => $subject]);
     }
 
     public function send(Request $request) {

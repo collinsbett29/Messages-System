@@ -1,13 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-    From:{{ $message->userFrom->name }}
+    From: {{ $message->userFrom->name }}
     <br>
-    Email:{{ $message->userFrom->email }}
+    Email: {{ $message->userFrom->email }}
     <br>
-    subject: {{ $message->subject }}
+    Subject: {{ $message->subject }}
     <hr>
-    Message
-    <br>
-    {{ $message->body }}
+    Message:
+    <br><br>
+    {{$message->body }}
+    <hr>
+    <a href="{{ route('create', [$message->userFrom->id, $message->subject]) }}" class="btn btn-primary">Reply</a>
 @endsection
