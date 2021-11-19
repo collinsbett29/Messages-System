@@ -72,4 +72,12 @@ class MessagesController extends Controller
 
         return view('deleted')->with('messages', $messages);
     }
+
+    public function return(int $id){
+        $message = Message::find($id);
+        $message->deleted = false;
+        $message->save();
+
+        return redirect()->to('/home');
+    }
 }

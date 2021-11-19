@@ -30,4 +30,4 @@ Route::post('/send', [App\Http\Controllers\MessagesController::class, 'send'])->
 Route::get('/read/{id}', [App\Http\Controllers\MessagesController::class, 'read'])->name('read');
 Route::get('/delete/{id}', [App\Http\Controllers\MessagesController::class, 'delete'])->name('delete');
 Route::get('/deleted', [App\Http\Controllers\MessagesController::class, 'deleted'])->name('deleted-messages');
-
+Route::get('/return/{id}', [App\Http\Controllers\MessagesController::class, 'return'])->name('return');
