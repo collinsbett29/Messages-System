@@ -67,4 +67,9 @@ class MessagesController extends Controller
 
         return redirect()->to('/home')->with('status', 'Message deleted uccessfully !');
     }
+    public function deleted(){
+        $messages = Message::with('userFrom')->where('user_id_to', Auth::id())->deleted()->get();
+
+        return view('deleted')->with('messages', $messages);
+    }
 }
