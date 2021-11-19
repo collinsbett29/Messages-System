@@ -14,7 +14,7 @@ class MessagesController extends Controller
     }
 
     public function index(){
-        $messages = Message::with('userFrom')->where('user_id_to', Auth::id())->get();
+        $messages = Message::with('userFrom')->where('user_id_to', Auth::id())->notDeleted()->get();
 
         return view('home')->with('messages', $messages);
     }
@@ -59,5 +59,12 @@ class MessagesController extends Controller
         $message->save();
 
         return view('read')->with('message', $message);
+    }
+    public function delete(int $id) {
+        $message = Message::find($id);
+        $message->deleted = true;
+        $message->save();
+
+        return redirect()->to('/home')->with('status', 'Message deleted uccessfully !');
     }
 }
